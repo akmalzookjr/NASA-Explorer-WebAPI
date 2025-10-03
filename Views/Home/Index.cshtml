@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- ✅ Hero Section -->
+<div class="hero text-center">
+    <h1>🌌 Explore NASA’s Universe</h1>
+    <p class="lead">Discover astronomy pictures, Mars rover images, asteroid data, and live Earth views.</p>
+
+    <div class="d-flex flex-wrap justify-content-center mt-4">
+        <a class="btn btn-primary btn-lg m-2" asp-controller="Nasa" asp-action="Apod">Astronomy Picture</a>
+        <a class="btn btn-danger btn-lg m-2" asp-controller="Nasa" asp-action="MarsRover">Mars Rover Photos</a>
+        <a class="btn btn-warning btn-lg m-2" asp-controller="Nasa" asp-action="Asteroids">Asteroid Dashboard</a>
+        <a class="btn btn-success btn-lg m-2" asp-controller="Nasa" asp-action="Epic">Earth from Space</a>
+    </div>
+</div>
+
+<!-- ✅ Introduction Section -->
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg border-0">
+        <div class="card-body p-4">
+            <h2 class="text-center mb-3">🚀 Welcome to NASA Explorer</h2>
+            <p class="text-justify">
+                The NASA Explorer web application is designed to make space exploration both <strong>accessible</strong>
+                and <strong>educational</strong>. By integrating NASA’s official open APIs, this platform allows you
+                to explore stunning astronomy images, view authentic Mars rover photos, track near-Earth asteroids,
+                and see real-time satellite views of our planet.
+            </p>
+            <p class="text-justify">
+                Our mission is to transform raw scientific data into an <strong>interactive and user-friendly experience</strong>.
+                Whether you are a student, a researcher, or simply a space enthusiast, NASA Explorer provides a portal
+                where you can learn, explore, and be inspired by the universe beyond Earth.
+            </p>
+            <div class="text-center mt-3">
+                <a asp-controller="Home" asp-action="About" class="btn btn-outline-light btn-lg">
+                    Learn More About This Project →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

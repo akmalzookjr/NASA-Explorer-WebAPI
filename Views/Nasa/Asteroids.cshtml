@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Asteroid Dashboard";
+}
+
+<div class="text-center">
+    <h1>Near Earth Objects (Next 7 Days)</h1>
+    <canvas id="asteroidChart" width="600" height="300"></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Data passed from controller
+        var asteroidData = @Html.Raw(ViewData["AsteroidData"]);
+
+        var labels = asteroidData.map(x => x.Date);
+        var counts = asteroidData.map(x => x.Count);
+
+        var ctx = document.getElementById("asteroidChart").getContext("2d");
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Asteroids per Day",
+                    data: counts,
+                    backgroundColor: "rgba(75, 192, 192, 0.6)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

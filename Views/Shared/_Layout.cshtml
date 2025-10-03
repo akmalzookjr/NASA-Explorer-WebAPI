@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NASA Explorer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NasaApiProject.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #0b0d17;
+            color: #e0e0e0;
+            padding-bottom: 80px;
+        }
+
+        .navbar {
+            background: #111827;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url("https://www.nasa.gov/sites/default/files/thumbnails/image/stsci-01gfrv5dxtjbr7z0gr0d8n87er.png") no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+            .hero h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+                margin-bottom: 30px;
+            }
+
+            .hero .btn {
+                margin: 10px;
+                min-width: 200px;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            footer {
+                background: #111827;
+                color: #aaa;
+                height: 80px;
+                line-height: 80px;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">🚀 NASA Explorer</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nasa" asp-action="Apod">Astronomy Picture</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nasa" asp-action="MarsRover">Mars Rover</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nasa" asp-action="Asteroids">Asteroid Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Nasa" asp-action="Epic">Earth from Space</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top text-center fixed-bottom">
+        <div class="container py-2">
+            &copy; 2025 - NASA Explorer | Powered by NASA Open APIs
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

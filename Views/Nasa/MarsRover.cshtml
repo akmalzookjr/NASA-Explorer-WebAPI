@@ -1,0 +1,103 @@
+﻿@model IEnumerable<System.Text.Json.JsonElement>
+
+<style>
+    
+    .mars-carousel {
+        height: 1080px;
+    }
+
+        .mars-carousel img {
+            max-height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+</style>
+
+<div class="text-center">
+    <h1>Mars Rover Photos</h1>
+    <form asp-action="MarsRover" method="post" class="mb-4">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <label for="rover">Select Rover:</label>
+                <select id="rover" name="rover" class="form-control" onchange="updateSolRange()">
+                    <option value="curiosity">Curiosity</option>
+                    <option value="opportunity">Opportunity</option>
+                    <option value="spirit">Spirit</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="sol">Enter Sol (Martian Day):</label>
+                <input type="number" id="sol" name="sol" class="form-control" value="1000" min="0" />
+                <small class="text-muted" id="solRangeInfo"></small>
+            </div>
+            <div class="col-md-2 align-self-end">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model != null && Model.Any())
+    {
+        <div id="marsCarousel" class="carousel slide mars-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner h-100">
+                @{
+                    int index = 0;
+                    foreach (var photo in Model)
+                    {
+                        var activeClass = index == 0 ? "active" : "";
+                        <div class="carousel-item @activeClass h-100">
+                            <div class="d-flex justify-content-center align-items-center h-100">
+                                <div class="card shadow-sm w-75">
+                                    <img src="@photo.GetProperty("img_src").GetString()" class="d-block w-100" alt="Mars Rover Photo" />
+                                    <div class="card-body text-start">
+                                        <p><strong>Rover:</strong> @photo.GetProperty("rover").GetProperty("name").GetString()</p>
+                                        <p><strong>Camera:</strong> @photo.GetProperty("camera").GetProperty("full_name").GetString()</p>
+                                        <p><strong>Date:</strong> @photo.GetProperty("earth_date").GetString()</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        index++;
+                    }
+                }
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#marsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#marsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    }
+    else
+    {
+        <p>No photos found. Try another sol or rover.</p>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function updateSolRange() {
+            const rover = document.getElementById("rover").value;
+            const solInput = document.getElementById("sol");
+            const solRangeInfo = document.getElementById("solRangeInfo");
+
+            let maxSol = 0;
+            if (rover === "curiosity") {
+                maxSol = 4000;
+            } else if (rover === "opportunity") {
+                maxSol = 5111;
+            } else if (rover === "spirit") {
+                maxSol = 2208;
+            }
+
+            solInput.max = maxSol;
+            solRangeInfo.innerText = `Valid range: 0 - ${maxSol}`;
+        }
+
+        updateSolRange();
+    </script>
+}

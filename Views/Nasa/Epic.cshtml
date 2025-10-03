@@ -1,0 +1,36 @@
+﻿@model IEnumerable<System.Text.Json.JsonElement>
+
+<div class="text-center">
+    <h1>Earth from Space (EPIC API)</h1>
+
+    @if (ViewData["Error"] != null)
+    {
+        <div class="alert alert-warning">
+            @ViewData["Error"]
+        </div>
+    }
+
+    <div class="row">
+        @foreach (var img in Model)
+        {
+            var date = img.GetProperty("date").GetString();
+            var dateParts = date.Split(" ")[0].Split("-");
+            var year = dateParts[0];
+            var month = dateParts[1];
+            var day = dateParts[2];
+
+            var imageName = img.GetProperty("image").GetString();
+            var imageUrl = $"https://epic.gsfc.nasa.gov/archive/natural/{year}/{month}/{day}/jpg/{imageName}.jpg";
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="@imageUrl" class="card-img-top" alt="Earth Image" />
+                    <div class="card-body">
+                        <p><strong>Date:</strong> @date</p>
+                        <p><strong>Caption:</strong> @img.GetProperty("caption").GetString()</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 bg-dark text-light p-4">
+        <div class="card-body text-center">
+            <h1 class="mb-4">👩‍🚀 About Us</h1>
+
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-3">
+                    <div class="card bg-secondary text-light h-100">
+                        <div class="card-body">
+                            <h4 class="fw-bold">Muhammad Akmal Bin Marzuki</h4>
+                            <p><strong>Student ID:</strong> AM2505019508</p>
+                            <p><strong>Program:</strong> CT206</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 mb-3">
+                    <div class="card bg-secondary text-light h-100">
+                        <div class="card-body">
+                            <h4 class="fw-bold">Muhammad Kamarul Hazman bin Muhamad Kamaros Zaman</h4>
+                            <p><strong>Student ID:</strong> AM2505019149</p>
+                            <p><strong>Program:</strong> CT206</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-start">
+                <h3 class="fw-bold">📖 Project Background</h3>
+                <p>
+                    This project was developed as part of the group assignment for
+                    <strong>WEB API DEVELOPMENT (SWC3633/SWC4443)</strong>.
+                    The NASA Explorer application integrates several NASA Open APIs to make space data
+                    accessible, engaging, and educational. It allows users to view the Astronomy Picture of the Day,
+                    explore authentic images from Mars rovers, monitor asteroid activity through the NeoWs service,
+                    and access satellite imagery of Earth via the EPIC API.
+                </p>
+
+                <div id="longBackground" class="collapse">
+                    <p>
+                        The NASA Explorer web app lets people navigate through contemporary and previously collected space data,
+                        making the space program captivating and educational. Aim of this project is to make it easier for people
+                        to learn about astronomy by presenting NASA's open datasets in a categorized, easy-to-use interface.
+                        The app changes obscure raw data into useful content that is simple to explore and understand what we so users
+                        don't have to search via scientific databases on their own.
+                    </p>
+                    <p>
+                        To this end, the app integrates various endpoints of the official NASA Open APIs, which are reliable and
+                        precise sources of data. The Astronomy Picture of the Day (APOD) API is used for showing NASA's astronomy picture
+                        of the day and its name, date, and description so that the users can inform themselves about space phenomena
+                        in a clear visual way. The Mars Rover Photos API provides users with the ability to browse authentic photos captured
+                        by the Curiosity, Opportunity, and Spirit rovers using filters to restrict sol (Martian day) values to within valid ranges.
+                        Results are shown in carousel view, which leads to more effortless navigation compared to showing all images in a long scroll.
+                    </p>
+                    <p>
+                        The Asteroids NeoWs (Near Earth Object Web Service) API powers the asteroid dashboard by querying JSON data sets of
+                        near-Earth objects and graphing them down into smaller charts. This allows users to quickly notice the frequency of
+                        asteroids heading towards Earth over a given time span. The EPIC (Earth Polychromatic Imaging Camera) API also provides
+                        recent satellite imagery of Earth from the DSCOVR satellite. As this API is usually down, the application has the caching
+                        mechanism that stores the last successful dataset and displays that as a fallback so that users have the consistent
+                        experience even in case of downtime.
+                    </p>
+                    <p>
+                        The project also emphasizes safe API use by securely storing the NASA API key in configuration through User Secrets for
+                        development and environment variables for production. This prevents hardcoding sensitive credentials in source code
+                        with flexibility across environments. In addition, error handling and empty states are also added throughout the app.
+                        When an API call is unsuccessful, or the user-provided values are outside of valid ranges, descriptive feedback messages
+                        are returned by the system rather than blank or crashed pages.
+                    </p>
+                    <p>
+                        By integrating all these different NASA endpoints on one platform, the app offers a complete space exploration portal.
+                        Users can view astronomy images, discover Mars through rover imagery, monitor asteroid activity in Earth's vicinity,
+                        and observe satellite images of the planet. Overall, these features offer an entertaining and informative experience
+                        that generates curiosity and further interest in astronomy while ensuring the data provided is authentic and scientifically valid.
+                    </p>
+                </div>
+
+                <button class="btn btn-outline-light mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#longBackground" aria-expanded="false" aria-controls="longBackground">
+                    View More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
